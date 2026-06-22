@@ -5,7 +5,8 @@
   <img src="https://img.shields.io/badge/Deployment-GitHub%20Pages-orange?style=for-the-badge" alt="Deployment">
 </p>
 ## Project Overview
-This repository is for y internship at PMW 
+
+This repository is for my internship at PMW 
 
 </body>
 </html>
