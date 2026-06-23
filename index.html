@@ -3,106 +3,433 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Web Project</title>
+    <title>Muhammad Umar Usman | Personal Portfolio</title>
     <style>
-        /* Base page settings */
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.6;
-            color: #333333;
-            background-color: #f4f6f9;
+        :root {
+            --bg-main: #05050e;
+            --bg-card: #0c0c1e;
+            --bg-pill: #141428;
+            --accent-neon: #00d4ff;
+            --accent-gold: #ffc200;
+            --accent-red: #e63946;
+            --accent-navy: #1e3a8a;
+            --text-heading: #ffffff;
+            --text-body: #94a3b8;
+            --border-color: #1a2744;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-body);
+            line-height: 1.6;
             padding: 40px 20px;
+            display: flex;
+            justify-content: center;
         }
 
-        /* Centered container for the text */
-        .container {
-            max-width: 650px;
-            margin: 0 auto;
-            background-color: #ffffff;
+        .portfolio-container {
+            max-width: 800px;
+            width: 100%;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
             padding: 40px;
-            border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e1e4e8;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 212, 255, 0.04);
         }
 
-        /* Typography styling */
+        /* Header */
+        header {
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+        }
+
+        .cohort-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(230, 57, 70, 0.15);
+            color: var(--accent-red);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(230, 57, 70, 0.35);
+        }
+
         h1 {
-            font-size: 28px;
-            color: #111111;
-            margin-top: 0;
+            color: var(--text-heading);
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
             margin-bottom: 8px;
+        }
+
+        .title-sub {
+            font-size: 1.1rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 0.9rem;
+        }
+
+        .contact-info a {
+            color: var(--text-body);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent-neon);
+        }
+
+        /* Section Headings */
+        .section-title {
+            color: var(--accent-neon);
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background-color: var(--border-color);
+        }
+
+        p.objective {
+            font-size: 1.05rem;
+            color: #cbd5e1;
+        }
+
+        /* Experience & Education */
+        .edu-item, .exp-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .edu-degree, .exp-role {
+            color: var(--text-heading);
             font-weight: 700;
         }
 
-        .subtitle {
-            font-size: 16px;
-            color: #666666;
-            margin-bottom: 30px;
+        .edu-school, .exp-company {
+            color: #cbd5e1;
+        }
+
+        .edu-timeline, .exp-timeline {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .exp-details {
+            margin-top: 8px;
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .exp-details li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent-neon);
+        }
+
+        .exp-details li {
+            position: relative;
+            padding-left: 20px;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        /* Projects */
+        .project-card {
+            background: #0f0f26;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-red);
+            box-shadow: 0 0 20px rgba(230, 57, 70, 0.12);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .project-name {
+            color: var(--text-heading);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .tech-stack {
+            font-size: 0.85rem;
+            background: rgba(30, 58, 138, 0.3);
+            padding: 4px 10px;
+            border-radius: 6px;
+            color: var(--accent-neon);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .project-details {
+            list-style-type: none;
+        }
+
+        .project-details li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .project-details li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category h4 {
+            color: var(--text-heading);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        h2 {
-            font-size: 20px;
-            color: #222222;
-            margin-top: 30px;
-            margin-bottom: 12px;
-            border-bottom: 1px solid #eaecef;
-            padding-bottom: 5px;
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
-        p {
-            margin-bottom: 16px;
-            font-size: 15px;
+        .tag {
+            background: var(--bg-pill);
+            color: #e2e8f0;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            border: 1px solid var(--border-color);
         }
 
-        ul {
-            margin-bottom: 20px;
-            padding-left: 20px;
+        .tag.red {
+            border-color: rgba(230, 57, 70, 0.4);
+            color: #fca5a5;
         }
 
-        li {
-            margin-bottom: 8px;
-            font-size: 15px;
+        .tag.gold {
+            border-color: rgba(255, 194, 0, 0.4);
+            color: #fcd34d;
         }
 
-        /* Plain text link styling */
-        .links-section a {
-            color: #0366d6;
-            text-decoration: none;
-            display: inline-block;
-            margin-right: 15px;
+        .tag.neon {
+            border-color: rgba(0, 212, 255, 0.3);
+            color: #67e8f9;
         }
 
-        .links-section a:hover {
-            text-decoration: underline;
+        /* Certs / Activities */
+        .simple-list {
+            list-style: none;
+        }
+
+        .simple-list li {
+            background: #0f0f26;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+            font-size: 0.95rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .simple-list li:hover {
+            border-color: var(--accent-gold);
+        }
+
+        .simple-list strong {
+            color: var(--text-heading);
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Personal Web Project</h1>
-        <div class="subtitle">Day 1 Development Log</div>
-        
-        <p>Welcome to this webpage. This profile is a straightforward space where I am tracking my progress as I learn frontend development and version control using Git.</p>
-        
-        <h2>Current Focus</h2>
-        <p>Right now, I am focusing on building clean semantic layouts without relying on complex frameworks. This page uses fundamental HTML structures combined with plain CSS for spacing and alignment.</p>
-        
-        <h2>Core Milestones</h2>
-        <ul>
-            <li>Setting up the initial repository structure on GitHub.</li>
-            <li>Writing an organized, readable documentation file.</li>
-            <li>Deploying the first live directory using GitHub Pages.</li>
-        </ul>
+    <div class="portfolio-container">
+        <header>
+            <span class="cohort-badge">Lahore, Pakistan · Lifelong Learner</span>
+            <h1>Muhammad Umar Usman</h1>
+            <p class="title-sub">Reader · Maker · Cook · Gym Enthusiast · Aspiring Developer</p>
+            <div class="contact-info">
+                <span>📍 Lahore, Pakistan</span>
+                <span>📞 your-number-here</span>
+                <span>✉️ <a href="mailto:youremail@example.com">youremail@example.com</a></span>
+                <span>🔗 <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank">LinkedIn Profile</a></span>
+            </div>
+        </header>
 
-        <h2>Project Links</h2>
-        <p class="links-section">
-            <a href="https://github.com/YOUR-USERNAME/PMW-day1" target="_blank">View Repository</a>
-            <a href="mailto:your-email@example.com">Send Email</a>
-        </p>
+        <section>
+            <h2 class="section-title">About Me</h2>
+            <p class="objective">
+                I'm someone who finds joy in the full range of creating — from the pages of a well-worn book, to a dish that actually turns out right, to something built with patience and two hands. The gym keeps me disciplined and the kitchen keeps me humble. I'm also slowly making my way into the world of code, one small project at a time.
+            </p>
+        </section>
+
+        <section>
+            <h2 class="section-title">What I've Been Up To</h2>
+            <div class="exp-item">
+                <div>
+                    <div class="exp-role">Independent Maker & Self-Learner</div>
+                    <div class="exp-company">Self-Directed · Lahore</div>
+                </div>
+                <div class="exp-timeline">2022 — Present</div>
+            </div>
+            <ul class="exp-details">
+                <li>Working through a growing reading list spanning fiction, history, philosophy, and self-development.</li>
+                <li>Building things with my hands — home projects, fixes, and creations that start as rough ideas and become real objects.</li>
+                <li>Cooking regularly, experimenting with recipes, and refining dishes through trial, error, and a lot of eating.</li>
+                <li>Training at the gym consistently, building strength and maintaining the kind of discipline that carries into everything else.</li>
+                <li>Learning the basics of HTML and CSS at my own pace — turning curiosity about how websites work into actual hands-on practice.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="section-title">Learning Journey</h2>
+            <div class="edu-item">
+                <div>
+                    <div class="edu-degree">Self-Directed Education</div>
+                    <div class="edu-school">Books, YouTube, Online Courses & Real-World Practice</div>
+                </div>
+                <div class="edu-timeline">Ongoing</div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Things I've Made</h2>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-name">Personal Recipe Collection</span>
+                    <span class="tech-stack">Cooking · Experimentation · Documentation</span>
+                </div>
+                <ul class="project-details">
+                    <li>Built a personal recipe journal of tested dishes ranging from Pakistani home cooking to BBQ and baked goods, with notes on what worked and what didn't.</li>
+                    <li>Developed a habit of documenting ingredient ratios, timings, and tweaks — treating cooking like a repeatable, improvable process.</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-name">DIY Home Projects</span>
+                    <span class="tech-stack">Tools · Creativity · Problem-Solving</span>
+                </div>
+                <ul class="project-details">
+                    <li>Designed and built various small home projects from scratch — shelves, fixes, custom setups — turning ideas into physical things through planning and patience.</li>
+                    <li>Learned to work with limited materials and improvise solutions, which turned out to be one of the most useful skills I've picked up.</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-name">First Coding Project</span>
+                    <span class="tech-stack">HTML · CSS · Basics</span>
+                </div>
+                <ul class="project-details">
+                    <li>Built a simple static webpage as my first real step into coding — learned how structure and styling work together to make something appear on a screen.</li>
+                    <li>Currently exploring how to build more with the basics before jumping into anything advanced.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Skills & Interests</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Code (Learning)</h4>
+                    <div class="skill-tags">
+                        <span class="tag neon">HTML</span>
+                        <span class="tag neon">CSS</span>
+                        <span class="tag neon">Basics Only — For Now</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Hobbies</h4>
+                    <div class="skill-tags">
+                        <span class="tag gold">Reading Books</span>
+                        <span class="tag gold">Cooking</span>
+                        <span class="tag gold">Making Things</span>
+                        <span class="tag gold">Gym</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Real-World Skills</h4>
+                    <div class="skill-tags">
+                        <span class="tag red">Discipline</span>
+                        <span class="tag red">Consistency</span>
+                        <span class="tag red">Patience</span>
+                        <span class="tag red">Problem-Solving</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Currently Reading</h2>
+            <ul class="simple-list">
+                <li><strong>Add the book you're reading now</strong> — author name here</li>
+                <li><strong>Recent Favourite:</strong> Add a book you loved — it says a lot about who you are</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="section-title">Hobbies & Lifestyle</h2>
+            <ul class="simple-list">
+                <li><strong>Gym:</strong> Training 4–5 times a week. Strength-focused, consistency over motivation. The gym taught me that showing up matters more than feeling like it.</li>
+                <li><strong>Reading:</strong> Books are one of my favourite places to be — fiction, history, self-development, anything that pulls me in and teaches me something on the way out.</li>
+                <li><strong>Cooking:</strong> I like knowing what's in my food. I experiment, I make mistakes, and occasionally I make something genuinely good. The kitchen is a great place to think.</li>
+                <li><strong>Making Things:</strong> If something can be built, fixed, or improved with a bit of time and effort, I'd rather do it myself. There's something satisfying about finishing something with your hands.</li>
+            </ul>
+        </section>
     </div>
 
 </body>
